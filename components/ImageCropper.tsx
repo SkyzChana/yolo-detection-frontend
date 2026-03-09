@@ -53,7 +53,7 @@ export default function ImageCropper({
     <div className="space-y-4">
 
       <div className="relative w-full h-96 bg-black">
-        <Cropper
+        {/* <Cropper
           image={image}
           crop={crop}
           zoom={zoom}
@@ -61,6 +61,14 @@ export default function ImageCropper({
           onCropChange={setCrop}
           onZoomChange={setZoom}
           onCropComplete={onCropComplete}
+        /> */}
+        <Cropper
+        image={image}
+        crop={crop}
+        zoom={zoom}
+        onCropChange={setCrop}
+        onZoomChange={setZoom}
+        onCropComplete={onCropComplete}
         />
       </div>
 
