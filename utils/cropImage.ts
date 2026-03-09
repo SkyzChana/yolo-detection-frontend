@@ -1,35 +1,35 @@
-export default async function getCroppedImg(
+export async function getCroppedImg(
   imageSrc: string,
-  pixelCrop: any
+  crop: any
 ): Promise<Blob> {
-  const image = new Image()
-  image.src = imageSrc
+  const image = new Image();
+  image.src = imageSrc;
 
   await new Promise((resolve) => {
-    image.onload = resolve
-  })
+    image.onload = resolve;
+  });
 
-  const canvas = document.createElement("canvas")
-  const ctx = canvas.getContext("2d")!
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
 
-  canvas.width = pixelCrop.width
-  canvas.height = pixelCrop.height
+  canvas.width = crop.width;
+  canvas.height = crop.height;
 
-  ctx.drawImage(
+  ctx?.drawImage(
     image,
-    pixelCrop.x,
-    pixelCrop.y,
-    pixelCrop.width,
-    pixelCrop.height,
+    crop.x,
+    crop.y,
+    crop.width,
+    crop.height,
     0,
     0,
-    pixelCrop.width,
-    pixelCrop.height
-  )
+    crop.width,
+    crop.height
+  );
 
   return new Promise((resolve) => {
     canvas.toBlob((blob) => {
-      resolve(blob!)
-    }, "image/jpeg")
-  })
+      resolve(blob as Blob);
+    }, "image/jpeg");
+  });
 }
