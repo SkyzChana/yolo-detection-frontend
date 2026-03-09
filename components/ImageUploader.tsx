@@ -463,8 +463,11 @@ export default function ImageUpload({ onUpload }: any) {
     handleFileChange(file);
   };
 
-  const handleCropComplete = (croppedArea: any, croppedAreaPixels: any) => {
-    setCropArea(croppedAreaPixels);
+  // const handleCropComplete = (croppedArea: any, croppedAreaPixels: any) => {
+  //   setCropArea(croppedAreaPixels);
+  // };
+  const handleCropComplete = (crop: any) => {
+  setCropArea(crop);
   };
 
   const handleCropSave = async () => {
