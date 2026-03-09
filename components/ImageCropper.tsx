@@ -96,9 +96,64 @@
 // }
 // '''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 
+// 'use client'
+
+// import React, { useState } from "react"
+// import ReactCrop from "react-image-crop"
+// import "react-image-crop/dist/ReactCrop.css"
+
+// interface Props {
+//   image: string
+//   onCropComplete: (crop: any) => void
+//   onCancel: () => void
+//   onSave: () => void
+// }
+
+// export default function ImageCropper({
+//   image,
+//   onCropComplete,
+//   onCancel,
+//   onSave
+// }: Props) {
+
+//   const [crop, setCrop] = useState<any>()
+
+//   return (
+//     <div className="space-y-4">
+
+//       <ReactCrop
+//         crop={crop}
+//         onChange={(c) => setCrop(c)}
+//         onComplete={(c) => onCropComplete(c)}
+//       >
+//         <img src={image} />
+//       </ReactCrop>
+
+//       <div className="flex gap-3">
+
+//         <button
+//           onClick={onSave}
+//           className="px-4 py-2 bg-green-600 text-white rounded"
+//         >
+//           ยืนยัน Crop
+//         </button>
+
+//         <button
+//           onClick={onCancel}
+//           className="px-4 py-2 bg-gray-300 rounded"
+//         >
+//           ยกเลิก
+//         </button>
+
+//       </div>
+
+//     </div>
+//   )
+// }
+
 'use client'
 
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import ReactCrop from "react-image-crop"
 import "react-image-crop/dist/ReactCrop.css"
 
@@ -117,6 +172,7 @@ export default function ImageCropper({
 }: Props) {
 
   const [crop, setCrop] = useState<any>()
+  const imgRef = useRef<HTMLImageElement | null>(null)
 
   return (
     <div className="space-y-4">
@@ -126,7 +182,11 @@ export default function ImageCropper({
         onChange={(c) => setCrop(c)}
         onComplete={(c) => onCropComplete(c)}
       >
-        <img src={image} />
+        <img
+          ref={imgRef}
+          src={image}
+          style={{ maxHeight: "70vh" }}
+        />
       </ReactCrop>
 
       <div className="flex gap-3">

@@ -1,35 +1,72 @@
-export async function getCroppedImg(
-  imageSrc: string,
-  crop: any
-): Promise<Blob> {
-  const image = new Image();
-  image.src = imageSrc;
+// export async function getCroppedImg(
+//   imageSrc: string,
+//   crop: any
+// ): Promise<Blob> {
+//   const image = new Image();
+//   image.src = imageSrc;
+
+//   await new Promise((resolve) => {
+//     image.onload = resolve;
+//   });
+
+//   const canvas = document.createElement("canvas");
+//   const ctx = canvas.getContext("2d");
+
+//   canvas.width = crop.width;
+//   canvas.height = crop.height;
+
+//   ctx?.drawImage(
+//     image,
+//     crop.x,
+//     crop.y,
+//     crop.width,
+//     crop.height,
+//     0,
+//     0,
+//     crop.width,
+//     crop.height
+//   );
+
+//   return new Promise((resolve) => {
+//     canvas.toBlob((blob) => {
+//       resolve(blob as Blob);
+//     }, "image/jpeg");
+//   });
+// }
+
+export async function getCroppedImg(imageSrc: string, crop: any) {
+
+  const image = new Image()
+  image.src = imageSrc
 
   await new Promise((resolve) => {
-    image.onload = resolve;
-  });
+    image.onload = resolve
+  })
 
-  const canvas = document.createElement("canvas");
-  const ctx = canvas.getContext("2d");
+  const canvas = document.createElement("canvas")
+  const ctx = canvas.getContext("2d")
 
-  canvas.width = crop.width;
-  canvas.height = crop.height;
+  const scaleX = image.naturalWidth / image.width
+  const scaleY = image.naturalHeight / image.height
+
+  canvas.width = crop.width
+  canvas.height = crop.height
 
   ctx?.drawImage(
     image,
-    crop.x,
-    crop.y,
-    crop.width,
-    crop.height,
+    crop.x * scaleX,
+    crop.y * scaleY,
+    crop.width * scaleX,
+    crop.height * scaleY,
     0,
     0,
     crop.width,
     crop.height
-  );
+  )
 
-  return new Promise((resolve) => {
+  return new Promise<Blob>((resolve) => {
     canvas.toBlob((blob) => {
-      resolve(blob as Blob);
-    }, "image/jpeg");
-  });
+      resolve(blob!)
+    }, "image/jpeg")
+  })
 }
