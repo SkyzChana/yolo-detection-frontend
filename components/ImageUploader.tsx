@@ -277,6 +277,161 @@
 //   )
 // }
 
+// "use client";
+
+// import { useState } from "react";
+// import ImageCropper from "./ImageCropper";
+// import { getCroppedImg } from "../utils/cropImage";
+
+// export default function ImageUpload({ onUpload }: any) {
+//   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+//   const [preview, setPreview] = useState<string | null>(null);
+//   const [showCrop, setShowCrop] = useState(false);
+//   const [cropArea, setCropArea] = useState<any>(null);
+
+//   const handleFileChange = (file: File) => {
+//     const reader = new FileReader();
+
+//     reader.onloadend = () => {
+//       setPreview(reader.result as string);
+//       setSelectedFile(file);
+//       setShowCrop(true);
+//     };
+
+//     reader.readAsDataURL(file);
+//   };
+
+//   const handleInputChange = (e: any) => {
+//     const file = e.target.files?.[0];
+//     if (!file) return;
+//     handleFileChange(file);
+//   };
+
+//   const handleCropComplete = (croppedArea: any, croppedAreaPixels: any) => {
+//     setCropArea(croppedAreaPixels);
+//   };
+
+//   const handleCropSave = async () => {
+//     if (!preview || !cropArea) return;
+
+//     const croppedImage = await getCroppedImg(preview, cropArea);
+
+//     const file = new File([croppedImage], "cropped.jpg", {
+//       type: "image/jpeg",
+//     });
+
+//     setSelectedFile(file);
+//     setPreview(URL.createObjectURL(croppedImage));
+//     setShowCrop(false);
+//   };
+
+//   const handleUpload = () => {
+//     if (!selectedFile) return;
+//     onUpload(selectedFile);
+//   };
+
+//   const handleReset = () => {
+//     setPreview(null);
+//     setSelectedFile(null);
+//     setShowCrop(false);
+//   };
+
+//   return (
+//     <div className="space-y-6">
+
+//       {/* Upload Box */}
+//       <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center">
+      
+//         <input
+//           type="file"
+//           accept="image/*"
+//           onChange={handleInputChange}
+//           className="mb-4"
+//         />
+      
+
+//         {/* Upload State */}
+//         {!preview && (
+//           <div className="space-y-3">
+//             <svg
+//               className="mx-auto h-16 w-16 text-gray-400"
+//               stroke="currentColor"
+//               fill="none"
+//               viewBox="0 0 48 48"
+//             >
+//               <path
+//                 d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28"
+//                 strokeWidth={2}
+//                 strokeLinecap="round"
+//                 strokeLinejoin="round"
+//               />
+//             </svg>
+
+//             <div className="text-gray-600">
+//               <p className="text-lg font-semibold">
+//                 คลิกเพื่อเลือกรูปภาพ
+//               </p>
+//               <p className="text-sm">
+//                 PNG, JPG, JPEG (สูงสุด 10MB)
+//               </p>
+//             </div>
+//           </div>
+//         )}
+
+//         {/* Preview */}
+//         {preview && !showCrop && (
+//           <div className="space-y-4">
+//             <img
+//               src={preview}
+//               alt="Preview"
+//               className="max-w-full max-h-64 mx-auto rounded-lg shadow-md"
+//             />
+
+//             <p className="text-sm text-gray-600 font-medium">
+//               {selectedFile?.name}
+//             </p>
+//           </div>
+//         )}
+//       </div>
+      
+//       {/*  */}
+
+//       {/* Cropper */}
+//       {showCrop && preview && (
+//         <ImageCropper
+//           image={preview}
+//           onCropComplete={handleCropComplete}
+//           onCancel={() => setShowCrop(false)}
+//           onSave={handleCropSave}
+//         />
+//       )}
+
+//       {/* Action Buttons */}
+//       <div className="flex gap-3">
+
+//         <button
+//           onClick={handleUpload}
+//           disabled={!selectedFile || showCrop}
+//           className="px-4 py-2 bg-blue-600 text-white rounded-lg flex-1"
+//         >
+//           ตรวจจับวัตถุ
+//         </button>
+
+//         {preview && (
+//           <button
+//             onClick={handleReset}
+//             className="px-4 py-2 bg-gray-200 rounded-lg"
+//           >
+//             ล้าง
+//           </button>
+//         )}
+
+//       </div>
+
+//     </div>
+//   );
+// }
+
 "use client";
 
 import { useState } from "react";
@@ -284,6 +439,7 @@ import ImageCropper from "./ImageCropper";
 import { getCroppedImg } from "../utils/cropImage";
 
 export default function ImageUpload({ onUpload }: any) {
+
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
   const [showCrop, setShowCrop] = useState(false);
@@ -312,6 +468,7 @@ export default function ImageUpload({ onUpload }: any) {
   };
 
   const handleCropSave = async () => {
+
     if (!preview || !cropArea) return;
 
     const croppedImage = await getCroppedImg(preview, cropArea);
@@ -337,21 +494,23 @@ export default function ImageUpload({ onUpload }: any) {
   };
 
   return (
+
     <div className="space-y-6">
 
       {/* Upload Box */}
-      <div className="border-2 border-dashed border-gray-300 rounded-xl p-6 text-center">
+      <label className="border-2 border-dashed border-gray-300 rounded-xl p-10 text-center block cursor-pointer hover:border-blue-400 transition">
 
         <input
           type="file"
           accept="image/*"
           onChange={handleInputChange}
-          className="mb-4"
+          className="hidden"
         />
 
         {/* Upload State */}
         {!preview && (
-          <div className="space-y-3">
+          <div className="space-y-4">
+
             <svg
               className="mx-auto h-16 w-16 text-gray-400"
               stroke="currentColor"
@@ -359,7 +518,7 @@ export default function ImageUpload({ onUpload }: any) {
               viewBox="0 0 48 48"
             >
               <path
-                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28"
+                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28"
                 strokeWidth={2}
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -367,19 +526,25 @@ export default function ImageUpload({ onUpload }: any) {
             </svg>
 
             <div className="text-gray-600">
+
               <p className="text-lg font-semibold">
                 คลิกเพื่อเลือกรูปภาพ
               </p>
+
               <p className="text-sm">
                 PNG, JPG, JPEG (สูงสุด 10MB)
               </p>
+
             </div>
+
           </div>
         )}
 
         {/* Preview */}
         {preview && !showCrop && (
+
           <div className="space-y-4">
+
             <img
               src={preview}
               alt="Preview"
@@ -389,42 +554,50 @@ export default function ImageUpload({ onUpload }: any) {
             <p className="text-sm text-gray-600 font-medium">
               {selectedFile?.name}
             </p>
+
           </div>
+
         )}
-      </div>
+
+      </label>
 
       {/* Cropper */}
       {showCrop && preview && (
+
         <ImageCropper
           image={preview}
           onCropComplete={handleCropComplete}
           onCancel={() => setShowCrop(false)}
           onSave={handleCropSave}
         />
+
       )}
 
-      {/* Action Buttons */}
+      {/* Buttons */}
       <div className="flex gap-3">
 
         <button
           onClick={handleUpload}
           disabled={!selectedFile || showCrop}
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg flex-1"
+          className="px-4 py-3 bg-blue-600 text-white rounded-lg flex-1 hover:bg-blue-700 transition disabled:opacity-50"
         >
           ตรวจจับวัตถุ
         </button>
 
         {preview && (
+
           <button
             onClick={handleReset}
-            className="px-4 py-2 bg-gray-200 rounded-lg"
+            className="px-4 py-3 bg-gray-200 rounded-lg hover:bg-gray-300 transition"
           >
             ล้าง
           </button>
+
         )}
 
       </div>
 
     </div>
+
   );
 }
