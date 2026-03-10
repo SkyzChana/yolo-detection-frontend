@@ -151,15 +151,75 @@
 //   )
 // }
 
+// 'use client'
+
+// import React, { useState, useRef } from "react"
+// import ReactCrop from "react-image-crop"
+// import "react-image-crop/dist/ReactCrop.css"
+
+// interface Props {
+//   image: string
+//   onCropComplete: (crop: any) => void
+//   onCancel: () => void
+//   onSave: () => void
+// }
+
+// export default function ImageCropper({
+//   image,
+//   onCropComplete,
+//   onCancel,
+//   onSave
+// }: Props) {
+
+//   const [crop, setCrop] = useState<any>()
+//   const imgRef = useRef<HTMLImageElement | null>(null)
+
+//   return (
+//     <div className="space-y-4">
+
+//       <ReactCrop
+//         crop={crop}
+//         onChange={(c) => setCrop(c)}
+//         onComplete={(c) => onCropComplete(c)}
+//       >
+//         <img
+//           ref={imgRef}
+//           src={image}
+//           style={{ maxHeight: "70vh" }}
+//         />
+//       </ReactCrop>
+
+//       <div className="flex gap-3">
+
+//         <button
+//           onClick={onSave}
+//           className="px-4 py-2 bg-green-600 text-white rounded"
+//         >
+//           ยืนยัน Crop
+//         </button>
+
+//         <button
+//           onClick={onCancel}
+//           className="px-4 py-2 bg-gray-300 rounded"
+//         >
+//           ยกเลิก
+//         </button>
+
+//       </div>
+
+//     </div>
+//   )
+// }
+
 'use client'
 
 import React, { useState, useRef } from "react"
-import ReactCrop from "react-image-crop"
+import ReactCrop, { Crop } from "react-image-crop"
 import "react-image-crop/dist/ReactCrop.css"
 
 interface Props {
   image: string
-  onCropComplete: (crop: any) => void
+  onCropComplete: (crop: { x: number; y: number; width: number; height: number }) => void
   onCancel: () => void
   onSave: () => void
 }
@@ -171,8 +231,26 @@ export default function ImageCropper({
   onSave
 }: Props) {
 
-  const [crop, setCrop] = useState<any>()
+  const [crop, setCrop] = useState<Crop>()
   const imgRef = useRef<HTMLImageElement | null>(null)
+
+  const handleComplete = (c: Crop) => {
+    if (!imgRef.current || !c.width || !c.height) return
+
+    const img = imgRef.current
+
+    const scaleX = img.naturalWidth / img.width
+    const scaleY = img.naturalHeight / img.height
+
+    const pixelCrop = {
+      x: Math.round(c.x * scaleX),
+      y: Math.round(c.y * scaleY),
+      width: Math.round(c.width * scaleX),
+      height: Math.round(c.height * scaleY)
+    }
+
+    onCropComplete(pixelCrop)
+  }
 
   return (
     <div className="space-y-4">
@@ -180,12 +258,13 @@ export default function ImageCropper({
       <ReactCrop
         crop={crop}
         onChange={(c) => setCrop(c)}
-        onComplete={(c) => onCropComplete(c)}
+        onComplete={handleComplete}
       >
         <img
           ref={imgRef}
           src={image}
-          style={{ maxHeight: "70vh" }}
+          style={{ maxHeight: "70vh", maxWidth: "100%" }}
+          alt="Crop preview"
         />
       </ReactCrop>
 

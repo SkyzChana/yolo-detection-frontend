@@ -93,7 +93,7 @@ export default function ImageUploader({
     reader.onloadend = () => {
       setPreview(reader.result as string);
       setSelectedFile(file);
-      setShowCrop(false); // ไม่เปิด crop ทันที
+      setShowCrop(true);
     };
 
     reader.readAsDataURL(file);
@@ -251,7 +251,7 @@ export default function ImageUploader({
 
       </div>
 
-      {/* Crop UI */}
+      {/* Crop */}
 
       {showCrop && preview && (
 
@@ -267,17 +267,6 @@ export default function ImageUploader({
       {/* Buttons */}
 
       <div className="flex gap-3">
-
-        {preview && !showCrop && (
-
-          <button
-            onClick={() => setShowCrop(true)}
-            className="btn-secondary"
-          >
-            ครอปรูป
-          </button>
-
-        )}
 
         <button
           onClick={handleUpload}
