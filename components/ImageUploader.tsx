@@ -21,7 +21,7 @@ interface Props {
   onLoadingChange: (loading: boolean) => void;
 }
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:2569";
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://darlena-interganglionic-hoyt.ngrok-free.dev/";
 
 export default function ImageUploader({
   onPrediction,
