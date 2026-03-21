@@ -3,6 +3,7 @@
 interface Detection {
   class: string
   conf: number | null
+  poison: string
 }
 
 interface PredictionResult {
@@ -38,7 +39,7 @@ export default function DetectionResults({ result, loading, onReset }: Props) {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
         </svg>
         <p className="text-lg font-medium">รอการอัปโหลดรูปภาพ</p>
-        <p className="text-sm">ผลการตรวจจับจะแสดงที่นี่</p>
+        <p className="text-sm">ผลการจำแนกภาพจะแสดงที่นี่</p>
       </div>
     )
   }
@@ -51,7 +52,8 @@ export default function DetectionResults({ result, loading, onReset }: Props) {
         <img
           src={`data:image/jpeg;base64,${result.imagedetect}`}
           alt="Detection Result"
-          className="w-full h-auto"
+          // className="w-full h-auto"
+          className="max-h-64 mx-auto rounded-lg"
         />
         <div className="absolute top-3 right-3 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg flex items-center">
           <span className="w-2 h-2 bg-white rounded-full mr-2 animate-pulse"></span>
@@ -65,7 +67,7 @@ export default function DetectionResults({ result, loading, onReset }: Props) {
           <svg className="w-5 h-5 mr-2 text-kku-maroon" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
           </svg>
-          วัตถุที่ตรวจพบ ({result.detections.length})
+          งูที่ตรวจพบ ({result.detections.length})
         </h3>
 
         <div className="space-y-2 max-h-64 overflow-y-auto">
@@ -81,6 +83,11 @@ export default function DetectionResults({ result, loading, onReset }: Props) {
                 <span className="font-semibold text-gray-800 capitalize">
                   {detection.class}
                 </span>
+                {detection.poison && (
+              <span className="text-sm text-red-600 font-medium">
+                {detection.poison}
+              </span>
+            )}
               </div>
               
               {detection.conf !== null && (

@@ -8,6 +8,7 @@ import DetectionResults from '@/components/DetectionResults'
 interface Detection {
   class: string
   conf: number | null
+  poison: string
 }
 
 interface PredictionResult {
@@ -43,21 +44,28 @@ export default function Home() {
       <main className="container mx-auto px-4 py-8 max-w-7xl">
         {/* Banner */}
         <div className="mb-8 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-kku-maroon mb-3">
-            ระบบตรวจจับวัตถุด้วย YOLO
-          </h1>
-          <p className="text-gray-600 text-lg">
-            มหาวิทยาลัยขอนแก่น | Khon Kaen University
-          </p>
-          <div className="mt-4 flex justify-center gap-4">
-            <span className="inline-block bg-kku-gold text-gray-900 px-4 py-2 rounded-full text-sm font-semibold">
-              Next.js Frontend
-            </span>
-            <span className="inline-block bg-kku-maroon text-white px-4 py-2 rounded-full text-sm font-semibold">
-              Flask Backend
-            </span>
-          </div>
-        </div>
+  <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
+    เว็บแอปพลิเคชันสำหรับการจำแนกสายพันธุ์งูในประเทศไทยด้วยการจำแนกภาพ
+  </h2>
+
+  <p className="text-lg font-semibold mb-2">ขอบเขตรายชื่องูที่ระบบสามารถจำแนกได้</p>
+
+  <div className="flex flex-wrap justify-center gap-2 text-sm">
+  {[
+    "งูงอด","งูจงอาง","งูทางมะพร้าว","งูปี่แก้ว","งูสิง",
+    "งูแสงอาทิตย์","งูหัวกะโหลก","งูเห่า","งูก้นขบ","งูกะปะ",
+    "งูเขียวพระอินทร์","งูเขียวหางไหม้","งูทับสมิงคลา",
+    "งูปล้องฉนวนตับจาก","งูแมวเซา","งูลายสอ","งูสามเหลี่ยม"
+  ].map((snake, index) => (
+    <span
+      key={index}
+      className="bg-gray-100 px-3 py-1 rounded-full border text-gray-700"
+    >
+      {snake}
+    </span>
+  ))}
+</div>
+</div>
 
         <div className="grid md:grid-cols-2 gap-8">
           {/* Upload Section */}
@@ -77,7 +85,7 @@ export default function Home() {
             {error && (
               <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg">
                 <p className="text-red-700 text-sm">
-                  <strong>❌ เกิดข้อผิดพลาด:</strong> {error}
+                  <strong>Error :</strong> {error}
                 </p>
               </div>
             )}
@@ -89,7 +97,7 @@ export default function Home() {
               <span className="bg-kku-gold text-gray-900 w-8 h-8 rounded-full flex items-center justify-center mr-3">
                 2
               </span>
-              ผลการตรวจจับ
+              ผลการจำแนก
             </h2>
             <DetectionResults result={result} loading={loading} onReset={handleReset} />
           </div>

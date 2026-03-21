@@ -8,6 +8,7 @@ import { getCroppedImg } from "../utils/cropImage";
 interface Detection {
   class: string;
   conf: number | null;
+  poison: string
 }
 
 interface PredictionResult {
@@ -224,7 +225,7 @@ export default function ImageUploader({
             </p>
 
             <p className="text-xs text-gray-500">
-              PNG JPG JPEG (สูงสุด 10MB)
+              PNG JPG JPEG (สูงสุด 100MB)
             </p>
 
           </div>
@@ -284,7 +285,7 @@ export default function ImageUploader({
           disabled={!selectedFile || showCrop}
           className="btn-primary flex-1"
         >
-          ตรวจจับวัตถุ
+          จำแนกสายพันธุ์งู
         </button>
 
         {preview && (
