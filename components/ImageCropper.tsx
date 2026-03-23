@@ -272,14 +272,14 @@ export default function ImageCropper({
 
         <button
           onClick={onSave}
-          className="px-4 py-2 bg-green-600 text-white rounded"
+          className="px-4 py-2 bg-[#2d6a4f] text-white rounded"
         >
-          ยืนยัน Crop
+          ยืนยันครอบตัดรูปภาพ
         </button>
 
         <button
           onClick={onCancel}
-          className="px-4 py-2 bg-gray-300 rounded"
+          className="bg-[#f4faf6] px-3 py-1  border border-[#c5dac9] text-[#4a7c5f] text-sm rounded"
         >
           ยกเลิก
         </button>

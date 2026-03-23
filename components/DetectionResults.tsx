@@ -23,8 +23,8 @@ export default function DetectionResults({ result, loading, onReset }: Props) {
     return (
       <div className="flex flex-col items-center justify-center h-64 space-y-4">
         <div className="relative w-20 h-20">
-          <div className="absolute top-0 left-0 w-full h-full border-4 border-kku-gold rounded-full animate-ping"></div>
-          <div className="absolute top-0 left-0 w-full h-full border-4 border-kku-maroon rounded-full animate-pulse"></div>
+          <div className="absolute top-0 left-0 w-full h-full border-4 border-green-400 rounded-full animate-ping"></div>
+          <div className="absolute top-0 left-0 w-full h-full border-4 border-green-700 rounded-full animate-pulse"></div>
         </div>
         <p className="text-gray-600 font-medium animate-pulse">กำลังประมวลผล...</p>
       </div>
@@ -64,7 +64,7 @@ export default function DetectionResults({ result, loading, onReset }: Props) {
       {/* รายการวัตถุที่ตรวจพบ */}
       <div className="space-y-3">
         <h3 className="text-lg font-bold text-gray-800 flex items-center">
-          <svg className="w-5 h-5 mr-2 text-kku-maroon" fill="currentColor" viewBox="0 0 20 20">
+          <svg className="w-5 h-5 mr-2 text-black" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clipRule="evenodd" />
           </svg>
           งูที่ตรวจพบ ({result.detections.length})
@@ -77,17 +77,21 @@ export default function DetectionResults({ result, loading, onReset }: Props) {
               className="flex items-center justify-between p-3 bg-gradient-to-r from-gray-50 to-white rounded-lg border border-gray-200 hover:shadow-md transition-shadow"
             >
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-kku-gold rounded-full flex items-center justify-center text-gray-900 font-bold text-sm">
+                <div className="w-8 h-8 bg-green-700 rounded-full flex items-center justify-center text-white font-bold text-xl">
                   {index + 1}
                 </div>
                 <span className="font-semibold text-gray-800 capitalize">
                   {detection.class}
                 </span>
                 {detection.poison && (
-              <span className="text-sm text-red-600 font-medium">
-                {detection.poison}
-              </span>
-            )}
+                  <span className={`text-sm font-medium ${
+                    detection.poison.toLowerCase().includes('non') 
+                      ? 'text-green-600' 
+                      : 'text-red-600'
+                  }`}>
+                  {detection.poison}
+                  </span>
+                )}
               </div>
               
               {detection.conf !== null && (

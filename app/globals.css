@@ -11,18 +11,18 @@ body {
 }
 
 .btn-primary {
-  background-color: var(--color-kku-maroon);
+  background-color: #2d6a4f;
   color: white;
   font-weight: 600;
   padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
   transition: all 300ms;
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+  ;
 }
 
 .btn-primary:hover {
-  background-color: color-mix(in srgb, var(--color-kku-maroon) 90%, black);
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  background-color: color-mix(in srgb, #afd4bb 90%, black);
+  
 }
 
 .btn-primary:disabled {
@@ -31,18 +31,17 @@ body {
 }
 
 .btn-secondary {
-  background-color: var(--color-kku-gold);
-  color: rgb(17 24 39);
-  font-weight: 600;
+  background-color: #f4faf6;
+  color: #2d6a4f;
+  font-weight: 500;
   padding: 0.75rem 1.5rem;
   border-radius: 0.5rem;
+  border: 0.5px solid #b0ccb8;
   transition: all 300ms;
-  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
 }
 
 .btn-secondary:hover {
-  background-color: color-mix(in srgb, var(--color-kku-gold) 90%, black);
-  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+  background-color: #e8f0e9;
 }
 
 .card {
@@ -58,20 +57,21 @@ body {
 }
 
 .upload-zone {
-  border: 2px dashed rgb(209 213 219);
+  border: 1.5px dashed #b0ccb8;
   border-radius: 0.75rem;
   padding: 2rem;
   text-align: center;
   cursor: pointer;
+  background-color: #f7fbf8;
   transition: all 300ms;
 }
 
 .upload-zone:hover {
-  border-color: var(--color-kku-maroon);
-  background-color: rgb(249 250 251);
+  border-color: #2d6a4f;
+  background-color: #f0f4f1;
 }
 
 .upload-zone-active {
-  border-color: var(--color-kku-maroon);
-  background-color: color-mix(in srgb, var(--color-kku-maroon) 5%, white);
+  border-color: #2d6a4f;
+  background-color: #e8f0e9;
 }

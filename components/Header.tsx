@@ -1,15 +1,24 @@
+import Image from "next/image"
+
 export default function Header() {
   return (
     // <header className="bg-gradient-to-r from-kku-maroon to-red-900 text-white shadow-xl">
-    <header className="bg-gradient-to-r from-lime-200 to-green-300 text-black shadow-xl">
-      <div className="container mx-auto px-4 py-6">
+    <header className="bg-[#2d6a4f]  text-white shadow-xl">
+      <div className="container  px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-4">
             {/* <div className="w-12 h-12 bg-kku-gold rounded-full flex items-center justify-center">
               <span className="text-2xl font-bold text-kku-maroon">KKU</span>
-            </div> */}
+            </div> */
+            <Image
+              src="/WhiteLOGO.png"
+              alt="Logo"
+              width={90}
+              height={90}
+              className="rounded-full"
+            />}
             <div>
-              <h1 className="text-2xl font-bold">Snake classification</h1>
+              <h1 className="text-xl font-bold " >Snake Classification</h1>
               {/* <p className="text-sm text-gray-200">Object Detection Web Application</p> */}
             </div>
           </div>

@@ -38,40 +38,40 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-[#ecf5ef]">
       <Header />
       
-      <main className="container mx-auto px-4 py-8 max-w-7xl">
-        {/* Banner */}
-        <div className="mb-8 text-center">
-  <h2 className="text-4xl md:text-5xl font-bold text-black mb-4">
-    เว็บแอปพลิเคชันสำหรับการจำแนกสายพันธุ์งูในประเทศไทยด้วยการจำแนกภาพ
-  </h2>
+      <main className="container mx-auto px-4 py-8 max-w-7xl ">
+        {/* Banner */} 
+        <div className=" mb-8 text-center">
+          <h2 className=" text-4xl md:text-5xl font-bold text-black mb-4">
+            เว็บแอปพลิเคชันสำหรับการจำแนกสายพันธุ์งูในประเทศไทยด้วยการจำแนกภาพ
+          </h2>
 
-  <p className="text-lg font-semibold mb-2">ขอบเขตรายชื่องูที่ระบบสามารถจำแนกได้</p>
+      <p className="text-lg font-semibold mb-2 text-gray-700">ขอบเขตรายชื่องูที่ระบบสามารถจำแนกได้</p>
 
-  <div className="flex flex-wrap justify-center gap-2 text-sm">
-  {[
-    "งูงอด","งูจงอาง","งูทางมะพร้าว","งูปี่แก้ว","งูสิง",
-    "งูแสงอาทิตย์","งูหัวกะโหลก","งูเห่า","งูก้นขบ","งูกะปะ",
-    "งูเขียวพระอินทร์","งูเขียวหางไหม้","งูทับสมิงคลา",
-    "งูปล้องฉนวนตับจาก","งูแมวเซา","งูลายสอ","งูสามเหลี่ยม"
-  ].map((snake, index) => (
-    <span
-      key={index}
-      className="bg-gray-100 px-3 py-1 rounded-full border text-gray-700"
-    >
-      {snake}
-    </span>
-  ))}
-</div>
-</div>
+      <div className="flex flex-wrap justify-center gap-2 text-sm">
+        {[
+      "งูงอด","งูจงอาง","งูทางมะพร้าว","งูปี่แก้ว","งูสิง",
+      "งูแสงอาทิตย์","งูหัวกะโหลก","งูเห่า","งูก้นขบ","งูกะปะ",
+      "งูเขียวพระอินทร์","งูเขียวหางไหม้","งูทับสมิงคลา",
+      "งูปล้องฉนวนตับจาก","งูแมวเซา","งูลายสอ","งูสามเหลี่ยม"
+        ].map((snake, index) => (
+        <span
+        key={index}
+        className="bg-[#f4faf6] px-3 py-1 rounded-full border border-[#c5dac9] text-[#4a7c5f] text-sm"
+        >
+        {snake}
+        </span>
+      ))}
+      </div>
+    </div>
 
         <div className="grid md:grid-cols-2 gap-8">
           {/* Upload Section */}
           <div className="card">
             <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
-              <span className="bg-kku-maroon text-white w-8 h-8 rounded-full flex items-center justify-center mr-3">
+              <span className="bg-[#2d6a4f] text-white w-8 h-8 rounded-full flex items-center justify-center mr-3">
                 1
               </span>
               อัปโหลดรูปภาพ
@@ -94,7 +94,7 @@ export default function Home() {
           {/* Results Section */}
           <div className="card">
             <h2 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
-              <span className="bg-kku-gold text-gray-900 w-8 h-8 rounded-full flex items-center justify-center mr-3">
+              <span className="bg-[#e8f0e9] text-[#2d6a4f] border border-[#a5d6b3] w-8 h-8 rounded-full flex items-center justify-center mr-3">
                 2
               </span>
               ผลการจำแนก

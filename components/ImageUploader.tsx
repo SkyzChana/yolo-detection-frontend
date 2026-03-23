@@ -275,7 +275,7 @@ export default function ImageUploader({
             onClick={() => setShowCrop(true)}
             className="btn-secondary"
           >
-            ครอปรูป
+            ครอบตัด
           </button>
 
         )}
