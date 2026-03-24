@@ -12,8 +12,8 @@ interface PredictionResult {
 }
 
 interface Props {
-  // result: PredictionResult | null
-  result: PredictionResult
+  result: PredictionResult | null
+  // result: PredictionResult
   loading: boolean
   onReset: () => void
 }
